@@ -36,6 +36,10 @@ Models like FLAN-T5 and FastChat-T5 sometimes generate unrelated or hallucinated
 
 ## TASK 3
 
+## JSON Format of ChatbotQA
+Following file consists of the JSON responses
+[JSON Data](chatbot_responses.json)
+
 ## Chatbot Development
 ![ss0](web_images/ss0.png)
 
