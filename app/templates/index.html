@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤖 Toobi Chatbot</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            background-color: #f4f4f4; 
+            margin: 0; 
+            padding: 0;
+        }
+        .chatbox { 
+            width: 60%; 
+            margin: 20px auto; 
+            background: white; 
+            padding: 20px; 
+            box-shadow: 0 0 10px gray; 
+            max-height: 400px; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column;
+        }
+        .message-container {
+            display: flex;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        .message {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            word-wrap: break-word;
+        }
+        .user-container { 
+            justify-content: flex-end; /* Align user messages to the right */
+        }
+        .bot-container { 
+            justify-content: flex-start; /* Align bot messages to the left */
+        }
+        .user {
+            background: #9BE8D8; 
+            color: white;
+            text-align: right;
+        }
+        .bot {
+            background: #ddd; 
+            text-align: left;
+        }
+        .source {
+            font-size: small;
+            color: gray;
+            margin-left: 15px;
+        }
+        input { 
+            width: 33%; 
+            padding: 10px; 
+            margin-top: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 20px;
+        }
+        button { 
+            width: 70px;
+            padding: 10px; 
+            background: #9BE8D8; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 5px;
+            font-weight: 700;
+        }
+        button:hover { 
+            background: #28FFBF; 
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 Toobi Chatbot</h1>
+    <div class="chatbox" id="chatbox">
+        <div class="message-container bot-container">
+            <div class="message bot">Hello! Ask me anything about my CV and Portfolio.</div>
+        </div>
+    </div>
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        async function sendMessage() {
+            var input = document.getElementById("userInput").value;
+            if (input.trim() === "") return;
+
+            var chatbox = document.getElementById("chatbox");
+
+            // Append user message on the right
+            chatbox.innerHTML += `
+                <div class="message-container user-container">
+                    <div class="message user">${input}</div>
+                </div>`;
+
+            // Send message to backend
+            let response = await fetch("/chat", {
+                method: "POST",
+                body: JSON.stringify({ message: input }),
+                headers: { "Content-Type": "application/json" }
+            });
+
+            let data = await response.json();
+
+            // Append bot response on the left
+            chatbox.innerHTML += `
+                <div class="message-container bot-container">
+                    <div class="message bot">${data.response}</div>
+                </div>`;
+
+            // Append sources if available
+            if (data.sources && data.sources.length > 0) {
+                let sourcesHTML = `
+                    <div class="message-container bot-container">
+                        <div class='message source'><strong>Sources:</strong> ${data.sources.map(source => `📄 ${source}`).join(", ")}</div>
+                    </div>`;
+                chatbox.innerHTML += sourcesHTML;
+            }
+
+            // Auto-scroll to the latest message
+            chatbox.scrollTop = chatbox.scrollHeight;
+
+            document.getElementById("userInput").value = "";
+        }
+    </script>
+</body>
+</html>
