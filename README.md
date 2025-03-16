@@ -31,5 +31,17 @@ These both serve as primary sources of information about my professional profile
 | **Generator** | `"google/flan-t5-large"`                       | Generates structured responses from retrieved text. |
 | **Generator** | `"lmsys/fastchat-t5-3b-v1.0"`                  | Instruction-tuned T5 model for conversational tasks.|
 
+2.
+Models like FLAN-T5 and FastChat-T5 sometimes generate unrelated or hallucinated responses due to weak retrieval grounding, where FAISS may fetch loosely related content if embeddings like "sentence-transformers/all-MiniLM-L6-v2" lack contextual understanding. Additionally, instruction-tuned generators tend to fabricate answers when no relevant data is retrieved. To fix this, better embeddings like "hkunlp/instructor-base" should be used for FAISS retrieval, and retrieval verification should be implemented—ensuring the model responds with "I don’t have this information" instead of fabricating details. Strengthening the prompt to force source-based responses and refining retrieval logic will significantly improve answer relevance and accuracy. 
+
+## TASK 3
+
+## Chatbot Development
+![ss0](web_images/ss0.png)
+
+![ss1](web_images/ss1.png)
+
+![ss2](web_images/ss2.png)
+
 
 
