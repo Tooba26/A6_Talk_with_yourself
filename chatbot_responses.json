@@ -1,0 +1,42 @@
+[
+    {
+        "question": "How old are you?",
+        "answer": "26/02/2002"
+    },
+    {
+        "question": "What is your highest level of education?",
+        "answer": "Bachelor of Science in Computer Science"
+    },
+    {
+        "question": "What major or field of study did you pursue during your education?",
+        "answer": "computer science"
+    },
+    {
+        "question": "How many years of work experience do you have?",
+        "answer": "3"
+    },
+    {
+        "question": "What type of work or industry have you been involved in?",
+        "answer": "computer science"
+    },
+    {
+        "question": "Can you describe your current role or job responsibilities?",
+        "answer": "TRAINEE WEB ENGINEER VEEVO TECH"
+    },
+    {
+        "question": "What are your core beliefs regarding the role of technology in shaping society?",
+        "answer": "I am excited about the prospect of contributing my skills and further advancing my expertise in computer technologies"
+    },
+    {
+        "question": "How do you think cultural values should influence technological advancements?",
+        "answer": "Developed a modern hotel renting website with a focus on user friendly booking experiences."
+    },
+    {
+        "question": "As a master\u2019s student, what is the most challenging aspect of your studies so far?",
+        "answer": "Developed a mobile application by selecting Convolutional Neural Network model which gave 92% accuracy."
+    },
+    {
+        "question": "What specific research interests or academic goals do you hope to achieve during your time as a master\u2019s student?",
+        "answer": "Maize seeds species classification using Machine Learning"
+    }
+]
